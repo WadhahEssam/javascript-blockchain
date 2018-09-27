@@ -14,6 +14,12 @@ class Block {
     return `///// Block /////\nTimestamp : ${this.timestamp}\nLast Hash : ${this.lastHash.substring(0,10)}\nHash      : ${this.hash.substring(0,10)}\nData      : ${this.data}\n/////////////////`;
   }
 
+  // you can at any time call Block.genesis() and it will 
+  // return an instance of the genesis block
+  static genesis() {
+    return new this('Genesis time', '------', 'f1r57-h45h', []);
+  }
+
 }
 
 // this will make sure that your class is shared 
