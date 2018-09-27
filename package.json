@@ -1,0 +1,23 @@
+{
+  "name": "javascript-blockchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WadhahEssam/javascript-blockchain.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WadhahEssam/javascript-blockchain/issues"
+  },
+  "homepage": "https://github.com/WadhahEssam/javascript-blockchain#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
