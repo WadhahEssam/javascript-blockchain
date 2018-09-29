@@ -9,5 +9,6 @@ const Block = require('./block');
 // console.log(Block.genesis().toString());
 
 // creating a new block after the genesis block
-const fooBlock = Block.mineBlock(Block.genesis(), 'foo');
-console.log(fooBlock.toString());
+// const fooBlock = Block.mineBlock(Block.genesis(), 'foo');
+// console.log(fooBlock.toString());
+
