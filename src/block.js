@@ -13,7 +13,12 @@ class Block {
   // allows us to print the instance of this class direclty
   // with out accessing the individual values of the object
   toString() {
-    return `///// Block /////\nTimestamp : ${this.timestamp}\nLast Hash : ${this.lastHash.substring(0,10)}\nHash      : ${this.hash.substring(0,10)}\nData      : ${this.data}\n/////////////////`;
+    return `///// Block /////\n
+            Timestamp : ${this.timestamp}\n
+            Last Hash : ${this.lastHash.substring(0,10)}\n
+            Hash      : ${this.hash.substring(0,10)}\n
+            Data      : ${this.data}\n
+            /////////////////`;
   }
 
   // you can at any time call Block.genesis() and it will 
