@@ -16,4 +16,6 @@ describe('Block', ()=> {
   it('sets the `lastHash` to match the hash of the last block', () => {
     expect(block.lastHash).toEqual(lastBlock.hash);
   });
+
+
 });
