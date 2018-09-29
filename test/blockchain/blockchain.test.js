@@ -1,5 +1,5 @@
-const Blockchain = require('../src/blockchain');
-const Block = require('../src/block');
+const Blockchain = require('../../src/blockchain/blockchain');
+const Block = require('../../src/blockchain/block');
 
 describe('Blockchain', ()=> {
   let blockchain, blockchain2;
@@ -32,6 +32,22 @@ describe('Blockchain', ()=> {
     blockchain2.addBlock('foo');
     blockchain2.chain[1].data = 'Not foo';
     expect(blockchain.isValidChain(blockchain2.chain)).toBe(false);
+  });
+
+  it('replaces the chain with a valid chain', () => {
+    // blockchain2 will have two blocks after this line
+    blockchain2.addBlock('goo');
+    // blockchain has one block and it will have two blocks after this line
+    blockchain.replaceChain(blockchain2.chain);
+    expect(blockchain.chain).toEqual(blockchain2.chain);
+  });
+
+  it('doesn\'t replace a chain if it is equal or less length', () => {
+    blockchain.addBlock('goo');
+    // now blockchain is longer than blockchain2 which 
+    // should lead to invalid chian 
+    blockchain.replaceChain(blockchain2.chain);
+    expect(blockchain.chain).not.toEqual(blockchain2.chain);
   });
 
 });
