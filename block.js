@@ -20,6 +20,18 @@ class Block {
     return new this('Genesis time', '------', 'f1r57-h45h', []);
   }
 
+  // this static function will generate a block based on the 
+  // last block and the data given
+  static mineBlock(lastBlock, data) {
+
+    // number of milliseconds that passed from a certin point
+    // in history
+    const timestamp = Date.now();
+    const lastHash = lastBlock.hash;
+    const hash = 'todo-hash';
+    return new this(timestamp, lastHash, hash, data);
+  }
+
 }
 
 // this will make sure that your class is shared 
