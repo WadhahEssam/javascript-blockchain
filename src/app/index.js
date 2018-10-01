@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 // creating the first route
 app.get('/blocks', (req, res) => {
   res.json(blockchain.chain);
-})
+});
 
 app.post('/mine', (req, res) => {
   // the data that will be sent by the user
