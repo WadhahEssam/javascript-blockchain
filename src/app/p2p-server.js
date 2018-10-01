@@ -25,6 +25,8 @@ class P2pServer {
   }
  
   // this function will create and start the server
+  // this method will be running the whole time 
+  // cuz of the event listeners 
   listen() {
     // creating the server and give it the port 
     const server = new Websocket.Server({ port: P2P_PORT});
@@ -37,7 +39,11 @@ class P2pServer {
     // a socket connects to this websocket server 
     // callback will recieve a socket as a paramiter for us to deal with 
     server.on('connection', socket => this.connectSocket(socket));
-    console.log(`listening for peer-to-peer connections on : ${P2P_PORT}`);
+
+    // this will allow the new peers to connect to elready existing peers
+    this.connectToPeer();
+
+    console.log(`Listening for peer-to-peer connections on : ${P2P_PORT}`);
   }
 
   // this function will take the socket that connected 
@@ -48,7 +54,28 @@ class P2pServer {
     console.log('socket connected');
   }
 
+  // this will loop throw all the peers array at the top 
+  // and connect to them 
+  connectToPeer() {
+     peers.forEach(peer => {
+       // a peer will look like this ws://localhost:5001
+       // this will connect to the peer by giving it the 
+       // link of the beer 
+       const socket = new Websocket(peer);
+
+       // IMPORTANT this even listener will allow already 
+       // running server for connecting to the one that are 
+       // created after them 
+       // this will not run on the current server 
+       socket.on('open', () => {
+        this.connectSocket(socket);
+       });
+     })
+  }
+
 }
+
+module.exports = P2pServer;
 
 
 
