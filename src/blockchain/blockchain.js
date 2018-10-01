@@ -49,7 +49,7 @@ class Blockchain {
     
     // the incoming chain must be longer than the existing chain
     if(newChain.length <= this.chain.length) {
-      console.log('new chain is not longer that the current chain.')
+      console.log('new chain is not longer than the current chain.')
       return;
     } 
     // the incoming chain must be valid

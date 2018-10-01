@@ -52,6 +52,11 @@ class P2pServer {
   connectSocket(socket) {
     this.sockets.push(socket);
     console.log('socket connected');
+    // attach the message handler to every socket that we create
+    this.messageHandler(socket);
+    // to send your blockchain to all the connected sockets
+    // this takes the message that you want to send
+    this.sendChain(socket);
   }
 
   // this will loop throw all the peers array at the top 
@@ -66,11 +71,38 @@ class P2pServer {
        // IMPORTANT this even listener will allow already 
        // running server for connecting to the one that are 
        // created after them 
-       // this will not run on the current server 
+       // this will not run on the current server  
        socket.on('open', () => {
         this.connectSocket(socket);
        });
      })
+  }
+
+  messageHandler(socket) {
+    // create an even handler that will take recieve the 
+    // data from any other node that sends data to the message event
+    socket.on('message', (message) => {
+      // transforming the message onbject into json
+      const data = JSON.parse(message);
+
+      // replacing the incoming chain with the current one
+      // this function will validate the incoming chain
+      this.blockchain.replaceChain(data);
+    });
+  }
+
+  // to prevent duplication
+  sendChain(socket) {
+    socket.send(JSON.stringify(this.blockchain.chain));
+  }
+
+  // if a blockchain of the node is updated we should send the 
+  // current new blockchain to sync it with others 
+  syncChains() {
+    // sending the chain to all the sockets 
+    this.sockets.forEach((socket) => {
+      this.sendChain(socket);
+    })
   }
 
 }

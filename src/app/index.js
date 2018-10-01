@@ -12,7 +12,7 @@ const HTTP_PORT = process.env.HTTP_PORT || 3001;
 
 const app = express();
 const blockchain = new Blockchain();
-const p2pServer = new P2pServer(blockchain);
+const p2pServer = new P2pServer(blockchain);    // notice that we passed a reference to the currenet blockchain so any modification for it inside p2pserver class it will refelect the blockchain here too
 
 // applay the bodyParser middleware that 
 // will allow us to recieve json
@@ -29,6 +29,7 @@ app.post('/mine', (req, res) => {
   const block = blockchain.addBlock(req.body.data);
   console.log(`New block added: ${block.toString()}`);
 
+  p2pServer.syncChains();
   // this will return the blockchain to the user
   res.redirect('/blocks');
 });
