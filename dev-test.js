@@ -1,5 +1,4 @@
 // goal of this file is to test the block class
-const Block = require('./block');
 
 // creating and printing a block 
 // const block = new Block('foo', 'bar', 'zoo', 'baz');
@@ -11,4 +10,7 @@ const Block = require('./block');
 // creating a new block after the genesis block
 // const fooBlock = Block.mineBlock(Block.genesis(), 'foo');
 // console.log(fooBlock.toString());
+const { DIFFICULTY } = require('./config');
+console.log(DIFFICULTY)
 
+console.log('hello');
