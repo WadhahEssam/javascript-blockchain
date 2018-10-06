@@ -1,5 +1,5 @@
 const SHA256 = require('crypto-js/sha256');
-// sfdg 
+
 class Block {
 
   // the four values that are needed for creating a block
