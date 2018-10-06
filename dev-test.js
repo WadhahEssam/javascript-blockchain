@@ -1,4 +1,6 @@
 // goal of this file is to test the block class
+const Block = require('./src/blockchain/block');
+const Blockchain = require('./src/blockchain/blockchain');
 
 // creating and printing a block 
 // const block = new Block('foo', 'bar', 'zoo', 'baz');
@@ -10,7 +12,10 @@
 // creating a new block after the genesis block
 // const fooBlock = Block.mineBlock(Block.genesis(), 'foo');
 // console.log(fooBlock.toString());
-const { DIFFICULTY } = require('./config');
-console.log(DIFFICULTY)
 
-console.log('hello');
+// tseting the difficulty 
+const bc = new Blockchain();
+for (let i = 0; i < 10; i++) {
+  console.log(bc.addBlock(`foo ${i+1}`).toString()) ;
+  
+}
