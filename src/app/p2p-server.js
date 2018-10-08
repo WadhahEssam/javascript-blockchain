@@ -43,7 +43,7 @@ class P2pServer {
     // this will allow the new peers to connect to elready existing peers
     this.connectToPeer();
 
-    console.log(`Listening for peer-to-peer connections on : ${P2P_PORT}`);
+    console.log(`Listening for peer-to-peer connections on : ${P2P_PORT}`); 
   }
 
   // this function will take the socket that connected 
@@ -60,7 +60,7 @@ class P2pServer {
   }
 
   // this will loop throw all the peers array at the top 
-  // and connect to them 
+  // and connect to them  
   connectToPeer() {
      peers.forEach(peer => {
        // a peer will look like this ws://localhost:5001
