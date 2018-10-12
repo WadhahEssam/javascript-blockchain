@@ -11,7 +11,6 @@ beforeEach(() => {
 
 describe('Transaction', () => {
 
-
   it('creates the first output that includes amount subtracted from the wallet balance', () => {
     // we will use the find function which 
     // return the element from the array 
@@ -24,5 +23,17 @@ describe('Transaction', () => {
     expect(transaction.outputs.find(output => output.address === recipient).amount).toEqual(amount);
   });
 
+  describe('transacting with an amount that exceeds the balance', () => {
+    beforeEach(() => {
+      // changed the value of the amount
+      // and regenerate the transaction
+      amount = 5000;
+      transaction = Transaction.newTransaction(wallet, recipient, amount);
+    });
+
+    it('does not create the transaction', () => {
+      expect(transaction).toEqual(undefined);
+    });
+  });
   
 });
