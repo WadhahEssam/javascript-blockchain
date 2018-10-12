@@ -22,6 +22,10 @@ class Wallet {
     Balance     : ${this.balance}
     /////////////////`
   }
+
+  static createWallet() {
+    return new this();
+  }
 }
 
 module.exports = Wallet; 
