@@ -13,9 +13,9 @@ class Transaction {
     this.outputs = [];
   }
 
-  // this will create and return a new transation 
-  static newTransation(senderWallet, recipientAddress, amount) {
-    const transation = new this();
+  // this will create and return a new transaction 
+  static newTransaction(senderWallet, recipientAddress, amount) {
+    const transaction = new this();
     // check if the given amount exceeds the 
     // sender's wallet balance
     if (senderWallet.balance < amount) {
@@ -24,11 +24,11 @@ class Transaction {
     }
 
     // first output 
-    transation.outputs.push({amount: senderWallet.balance - amount, address: senderWallet.publicKey})
+    transaction.outputs.push({amount: senderWallet.balance - amount, address: senderWallet.publicKey})
     // second output
-    transation.outputs.push({amount, address: recipientAddress});
+    transaction.outputs.push({amount, address: recipientAddress});
   }
 
 } 
 
-module.exports = Transation;
+module.exports = Transaction;
