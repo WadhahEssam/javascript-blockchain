@@ -23,6 +23,13 @@ class Wallet {
     /////////////////`
   }
 
+  // this method will generate a signture that 
+  // is generated from the private and public 
+  // key of the wallet
+  sign(dataHash) {
+    return this.keyPair.sign(dataHash);
+  }
+
   static createWallet() {
     return new this();
   }

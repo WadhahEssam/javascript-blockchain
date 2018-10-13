@@ -1,4 +1,4 @@
-const SHA256 = require('crypto-js/sha256');
+const Utils = require('../utils');
 
 const  { DIFFICULTY, MINE_RATE } = require('../../config');
 
@@ -50,7 +50,7 @@ class Block {
       nonce++;
       timestamp = Date.now();
       // since adjusting the difficulty is based on the previous
-      // block we need the lastBlock difficulty and the current 
+      // block we need the lastBlock difficulty and the current  
       // timestamp to generate a new difficulty 
       difficulty = Block.adjustDifficulty(lastBlock, timestamp) ;
       hash = Block.hash(timestamp, lastHash, data, nonce, difficulty);
@@ -60,7 +60,7 @@ class Block {
   }
 
   static hash(timestamp, lastHash, data, nonce, difficulty) {
-    return SHA256(`${timestamp}${lastHash}${data}${nonce}${difficulty}`).toString();
+    return Utils.hash(`${timestamp}${lastHash}${data}${nonce}${difficulty}`).toString();
   }
 
   // similar to the static hash function but takes
