@@ -18,6 +18,18 @@ class Utils {
     return SHA256(JSON.stringify(data)).toString();
   }
 
+  // to check weather the data is having 
+  // a correct signture or not so after 
+  // decrypting the signture we should  
+  // expect it to be equal to the dataHash
+  static verifySignture(publicKey, signture, dataHash) {
+    // a method keyFromPublic that takes the public key 
+    // and give you the key that you can verify any signture
+    // with, and then the verify will return a true or false 
+    // and it takes the dataHash and the signture for it
+    return ec.keyFromPublic(publicKey, 'hex').verify(dataHash, signture);
+  }
+
   // generates and returns a unuiqe id using uuid 
   static id() {
     return uuidV1();

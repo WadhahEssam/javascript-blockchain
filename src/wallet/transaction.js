@@ -51,6 +51,16 @@ class Transaction {
       signture: senderWallet.sign(Utils.hash(transaction.outputs))
     }
   }
+
+  static verifyTransaction(Transaction) {
+    return Utils.verifySignture(
+      Transaction.input.address, 
+      Transaction.input.signture, 
+      Utils.hash(transaction.outputs)
+    );
+  }
+
+
 } 
 
 module.exports = Transaction;
