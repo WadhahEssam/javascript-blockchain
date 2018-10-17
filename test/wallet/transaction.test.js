@@ -16,7 +16,7 @@ describe('Transaction', () => {
     // return the element from the array 
     // that makes the given condition true
     expect(transaction.outputs.find(output => output.address === wallet.publicKey).amount)
-    .toEqual(wallet.balance - amount);
+      .toEqual(wallet.balance - amount);
   });
 
   it('creates the second output that has the amount added to the recipient', () => {
@@ -47,6 +47,27 @@ describe('Transaction', () => {
     it('does not create the transaction', () => {
       expect(transaction).toEqual(undefined);
     });
+  });
+
+  describe('updating a transaction', () => {
+    let nextAmount, nextRecipient;
+    beforeEach(() => {
+      nextAmount = 20;
+      nextRecipient = 'n3xt-4ddre355';
+      transaction.update(wallet, nextRecipient, nextAmount);
+    });
+
+    it(`subtracts the next amount from the sender's output`, () => {
+      expect(transaction.outputs.find(output => output.address === wallet.publicKey).amount)
+        .toEqual(wallet.balance - amount - nextAmount);
+    });
+
+    it('outputs an amount for the next recipient', () => {
+      expect(transaction.outputs.find(output => output.address === nextRecipient).amount)
+        .toEqual(nextAmount);
+    });
+
+
   });
   
 });
