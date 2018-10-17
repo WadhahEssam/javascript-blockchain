@@ -52,10 +52,10 @@ class Transaction {
     }
   }
 
-  static verifyTransaction(Transaction) {
+  static verifyTransaction(transaction) {
     return Utils.verifySignture(
-      Transaction.input.address, 
-      Transaction.input.signture, 
+      transaction.input.address, 
+      transaction.input.signture, 
       Utils.hash(transaction.outputs)
     );
   }
