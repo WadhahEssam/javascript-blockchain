@@ -21,6 +21,13 @@ class TransactionPool {
       this.transactions.push(transaction);
     }
   }
+
+  // to check weather a transaction of a wallet
+  // exists or not in the pool to know if you have 
+  // to update it or to create it 
+  existingTransaction(publicKey) {
+    return this.transactions.find(t => t.input.address === publicKey);
+  }
 }
 
-module.exports = TransactionPool;
+module.exports = TransactionPool; 
