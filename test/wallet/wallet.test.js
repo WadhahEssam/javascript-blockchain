@@ -31,6 +31,10 @@ describe('Wallet', () => {
         expect(transaction.outputs.find(output => output.address === wallet.publicKey).amount)
         .toEqual(wallet.balance - sendAmount * 2);
       });
+
+      it('clones the sendAmount output for the recipient', () => {
+        expect(transaction.outputs.filter(output => output.address === recipient).map((output) => output.amount)).toEqual([sendAmount, sendAmount]);
+      });
     });
   });
-});
+}); 
