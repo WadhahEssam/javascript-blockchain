@@ -47,7 +47,7 @@ class Wallet {
     // the function exisitingTransaction() will
     // be returning a transaction owned by the 
     // wallet by providing the public key to it
-    let transaction = transaction.existingTransaction(this.publicKey);
+    let transaction = transactionPool.existingTransaction(this.publicKey);
 
     // if the transaction exisits in the pool
     if (transaction) {
